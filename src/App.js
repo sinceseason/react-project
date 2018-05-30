@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {Header} from './containers/header/index'
+import  { Header } from './containers/header/header';
 import './App.scss';
 
 class App extends Component {
   render() {
     return (
-      <Header></Header>
+      <Header />
     );
   }
 }
