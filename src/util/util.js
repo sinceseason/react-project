@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, notification } from 'antd';
 
-function $openNotification() {
+function $BaseErrorNotification() {
     notification.error({
         message: 'Notification Title',
         description: '出错啦',
@@ -10,6 +10,16 @@ function $openNotification() {
     });
 };
 
+function $customErrorNotification(msg, desc) {
+    notification.error({
+        message: msg,
+        description: desc,
+        icon: <Icon type="frown" style={{ color: '#108ee9' }} />,
+        duration: 2,
+    });
+}
+
 export default {
-    $openNotification,
+    $BaseErrorNotification,
+    $customErrorNotification
 }

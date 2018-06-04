@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input, Icon, Button } from 'antd';
-import { Util } from '../../util/util';
+import { FormattedMessage } from 'react-intl';
+import  Util  from '../../util/util';
 import './login.scss';
 
 export class Login extends React.Component {
@@ -40,18 +41,9 @@ export class Login extends React.Component {
 
     login = () => {
         if (!this.state.userName || !this.state.password) {
-            Util.openNotification();
+            Util.$customErrorNotification('参数错啦', '用户名或密码不能为空');
         }
     }
-
-    // openNotification = () => {
-    //     notification.error({
-    //         message: 'Notification Title',
-    //         description: '出错啦',
-    //         icon: <Icon type="frown" style={{ color: '#108ee9' }} />,
-    //         duration: 2,
-    //     });
-    // };
 
     render() {
         return (
@@ -65,18 +57,27 @@ export class Login extends React.Component {
                         onChange={this.onChangeUser}
                         ref={node => this.userNameInput = node}
                     />
-                    <Input style={{marginTop: 20}}
-                        placeholder="Enter your password"
-                        prefix={<Icon type="lock" style={{ fontSize:16, color: '#01a5c6' }} />}
-                        suffix={this.state.password ? <Icon type="close-circle" onClick={this.emitEmptyPass} /> : null}
-                        value={this.state.password}
-                        onChange={this.onChangePass}
-                        ref={node => this.passwordInput = node}
-                    />
-                    <Button 
-                        className="login-button"
-                        type="primary"
-                        onClick={this.login}>登录</Button>
+                    <FormattedMessage id='password'>
+                        {(val) => {
+                            <Input style={{marginTop: 20}}
+                                placeholder={val}
+                                prefix={<Icon type="lock" style={{ fontSize:16, color: '#01a5c6' }} />}
+                                suffix={this.state.password ? <Icon type="close-circle" onClick={this.emitEmptyPass} /> : null}
+                                value={this.state.password}
+                                onChange={this.onChangePass}
+                                ref={node => this.passwordInput = node}
+                            />
+                        }}
+                    </FormattedMessage>
+                    <FormattedMessage id='login'>
+                        {(val) => (
+                            <Button 
+                                className="login-button"
+                                type="primary"
+                                onClick={this.login}>{val}
+                            </Button>
+                        )}
+                    </FormattedMessage>
                 </div>
             </div>
         );
