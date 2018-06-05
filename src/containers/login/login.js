@@ -2,6 +2,7 @@ import React from 'react';
 import { Input, Icon, Button } from 'antd';
 // import { FormattedMessage } from 'react-intl';
 import { I18n } from 'react-i18next';
+import i18next from 'i18next';
 import  Util  from '../../util/util';
 import './login.scss';
 
@@ -41,8 +42,9 @@ export class Login extends React.Component {
     }
 
     login = () => {
+        let tmp = i18next.t('title');
         if (!this.state.userName || !this.state.password) {
-            Util.$customErrorNotification('tmp', '用户名或密码不能为空');
+            Util.$customErrorNotification(tmp, '用户名或密码不能为空');
         }
     }
 
