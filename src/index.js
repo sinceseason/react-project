@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-// 引入i18n
+
+import './i18n';
+import './index.css';
+// 引入react-intl
 import { addLocaleData, IntlProvider } from 'react-intl';
 /*
 *引入与navigator.languages[0]所对应的语言；
