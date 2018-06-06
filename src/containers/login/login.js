@@ -4,6 +4,7 @@ import { Input, Icon, Button } from 'antd';
 import { I18n } from 'react-i18next';
 import i18next from 'i18next';
 import  Util  from '../../util/util';
+import Http from '../../http/http';
 import './login.scss';
 
 export class Login extends React.Component {
@@ -42,10 +43,15 @@ export class Login extends React.Component {
     }
 
     login = () => {
-        let tmp = i18next.t('title');
         if (!this.state.userName || !this.state.password) {
-            Util.$customErrorNotification(tmp, '用户名或密码不能为空');
+            Util.$customErrorNotification(i18next.t('error'), i18next.t('notify.userOrPassEmpty'));
+            return;
         }
+        Http._Get('login')
+            .then((data => {
+                console.log(data);
+            }))
+        
     }
 
     render() {

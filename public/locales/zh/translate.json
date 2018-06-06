@@ -1,5 +1,9 @@
 {
   "title": "欢迎使用i18n",
+  "error": "出错啦",
+  "notify": {
+    "userOrPassEmpty": "用户名或密码不能为空"
+  },
   "inputMsg": {
     "username": "请输入用户名",
     "password": "请输入密码"
