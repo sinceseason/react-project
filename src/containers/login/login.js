@@ -47,7 +47,11 @@ export class Login extends React.Component {
             Util.$customErrorNotification(i18next.t('error'), i18next.t('notify.userOrPassEmpty'));
             return;
         }
-        Http._Get('login')
+        let params = {
+            userName: this.state.userName,
+            password: this.state.password
+        }
+        Http._Get('login', params)
             .then((data => {
                 console.log(data);
             }))
@@ -60,7 +64,7 @@ export class Login extends React.Component {
                 {(t) => (
                     <div className="container">
                         <div className="inner-container">
-                            <Input className=""
+                            <Input
                                 placeholder={t('inputMsg.username')}
                                 prefix={<Icon type="user" style={{ fontSize: 16, color: '#01a5c6' }} />}
                                 suffix={this.state.userName ? <Icon type="close-circle" onClick={this.emitEmptyUser} /> : null}
@@ -68,7 +72,9 @@ export class Login extends React.Component {
                                 onChange={this.onChangeUser}
                                 ref={node => this.userNameInput = node}
                             />
-                            <Input style={{marginTop: 20}}
+                            <Input
+                                type='password'
+                                style={{marginTop: 20}}
                                 placeholder={t('inputMsg.password')}
                                 prefix={<Icon type="lock" style={{ fontSize:16, color: '#01a5c6' }} />}
                                 suffix={this.state.password ? <Icon type="close-circle" onClick={this.emitEmptyPass} /> : null}
