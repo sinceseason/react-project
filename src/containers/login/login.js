@@ -5,6 +5,7 @@ import { I18n } from 'react-i18next';
 import i18next from 'i18next';
 import  Util  from '../../util/util';
 import Http from '../../http/http';
+import * as CONSTANT from '../../const/constant';
 import './login.scss';
 
 export class Login extends React.Component {
@@ -52,10 +53,12 @@ export class Login extends React.Component {
             password: this.state.password
         }
         Http._Get('login', params)
-            .then((data => {
-                console.log(data);
-            }))
-        
+            .then(data => {
+                let result = data.data;
+                if (result.status === CONSTANT.RESULT.SUCCESS) {
+                    console.log(result);
+                }
+            })  
     }
 
     render() {

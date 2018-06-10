@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Login } from './containers/login/login'
+import { Routes } from './router/routers';
 import './App.scss';
 
 class App extends Component {
   render() {
-    return ( 
-      <Login />
+    return (
+      <Routes />
     );
   }
 }
