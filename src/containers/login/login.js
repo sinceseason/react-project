@@ -56,9 +56,11 @@ export class Login extends React.Component {
             .then(data => {
                 let result = data.data;
                 if (result.status === CONSTANT.RESULT.SUCCESS) {
-                    console.log(result);
+                    this.props.history.replace('/nav');
+                } else {
+                    Util.$customErrorNotification(i18next.t('error'), result.msg);
                 }
-            })  
+            })
     }
 
     render() {

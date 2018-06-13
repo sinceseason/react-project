@@ -38,7 +38,7 @@ class Http {
     }
 
     static _Post(url, urlPara, params) {
-        if (urlPara != undefined && urlPara != null)
+        if (urlPara !== undefined && urlPara != null)
             url += '/' + urlPara
 
         return new Promise((resolve, reject) => {
