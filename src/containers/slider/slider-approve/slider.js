@@ -1,9 +1,9 @@
 import React from 'react';
-import { Collapse } from 'antd';
+// import { Collapse } from 'antd';
 import './slider.scss';
 
-const Panel = Collapse.Panel;
-const text = 'dog';
+// const Panel = Collapse.Panel;
+// const text = 'dog';
 
 export class SliderApprove extends React.Component {
     render() {

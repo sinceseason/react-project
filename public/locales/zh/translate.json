@@ -1,6 +1,7 @@
 {
   "title": "上海国际港务(集团)股份有限公司",
   "error": "出错啦",
+  "success": "成功咯",
   "notify": {
     "userOrPassEmpty": "用户名或密码不能为空"
   },
@@ -11,8 +12,10 @@
   "button": {
     "login": "登录"
   },
-  "description": {
-    "part1": "Um loszulegen, ändere <1>src/App(DE).js</1> speicheren und neuladen.",
-    "part2": "Ändere die Sprachen zwischen deutsch und englisch mit Hilfe der beiden Schalter."
+  "slider": {
+    "system_manage": "系统管理",
+    "wharf_manage": "码头管理",
+    "internal_account_manage": "内部账户管理",
+    "external_account_manage": "外部账户管理"
   }
 }

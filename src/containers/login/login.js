@@ -56,7 +56,17 @@ export class Login extends React.Component {
             .then(data => {
                 let result = data.data;
                 if (result.status === CONSTANT.RESULT.SUCCESS) {
-                    this.props.history.replace('/nav');
+                    let loginUser = result.data;
+                    switch (loginUser.type) {
+                        case 1:
+                            this.props.history.push('/nav/sliderSa');
+                            break;
+                        case 2:
+                            this.props.history.push('/nav/sliderApprove');
+                            break;
+                        case 3:
+                            this.props.history.push('/nav/sliderApply');
+                    }
                 } else {
                     Util.$customErrorNotification(i18next.t('error'), result.msg);
                 }
