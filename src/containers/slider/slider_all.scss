@@ -6,8 +6,22 @@
 
     .inner-slider {
         .slider-content {
-            padding: 10px 0 0 20px;
+            display: block;
+            padding: 15px 40px;
+            color: #333;
             cursor: pointer;
+            text-decoration: none;
+            &.slider-content-grey {
+                background-color: #eee;
+                border-bottom: 1px solid #e3e3e3;
+                &.active {
+                    background-color: #3979cb;
+                    color: #eee;
+                }
+            }
+            &.active {
+                background-color: #bed8ff;
+            }
         }
     }
 }

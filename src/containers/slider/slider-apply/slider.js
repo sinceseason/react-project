@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Collapse } from 'antd';
-import './slider.scss';
+import '../slider_all.scss';
 
 // const Panel = Collapse.Panel;
 // const text = 'dog';

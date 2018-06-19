@@ -64,9 +64,11 @@ class Http {
             case 200:
                 return true;
             case 404:
+            // TODO:
                 //   router.replace({ name: '404', params: { msg: data.message } })
                 return false;
             case 500:
+            // TODO:
                 // let msg = !IS_DEV ? '系统繁忙' : '系统错误:' + data.message
                 // this._toast(msg, 'error')
                 return false;

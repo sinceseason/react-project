@@ -66,6 +66,10 @@ export class Login extends React.Component {
                             break;
                         case 3:
                             this.props.history.push('/nav/sliderApply');
+                            break
+                        default:
+                            this.props.history.push('/404');
+                            break;
                     }
                 } else {
                     Util.$customErrorNotification(i18next.t('error'), result.msg);

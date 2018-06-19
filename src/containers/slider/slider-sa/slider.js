@@ -1,7 +1,8 @@
 import React from 'react';
 import { I18n } from 'react-i18next';
+import { NavLink } from 'react-router-dom';
 import { Icon, Collapse } from 'antd';
-import './slider.scss';
+import '../slider_all.scss';
 
 const Panel = Collapse.Panel;
 
@@ -10,24 +11,34 @@ const panelStyle = {
     color: '#fff',
 };
 
+const sliderContentList = [
+    'wharf', 
+    'internal',
+    'external'
+];
+
+function SliderContentDom(props) {
+    const sliderList = props.sliderList;
+    const listItems = sliderList.map(item =>
+        <NavLink 
+            to={`/nav/sliderSa/${item}`} 
+            className="slider-content" 
+            activeClassName="active">
+                {props.t(`slider.${item}_manage`)}
+        </NavLink>
+    )
+    return (
+        <div>
+           {listItems}
+        </div>
+    );
+};
+
 export class SliderSa extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    // }
-
-    // componentDidMount () {
-        
-    // }
-
-    changeRouter = (val) => {
-        switch (val) {
-            case 1:
-                this.props.history.push('/nav/sliderSa/wharf');
-                console.log(val);
-                break;
-        
-            default:
-                break;
+    constructor(props) {
+        super(props);
+        this.state = {
+            active: false,
         }
     }
 
@@ -37,21 +48,19 @@ export class SliderSa extends React.Component {
             {(t) => (
             <div className="slider-container">
                 <div className="inner-slider">
-                    <Collapse accordion bordered={false}>
+                    <Collapse className="slider-sa" accordion bordered={false} defaultActiveKey={['1']}>
                         <Panel
-                            header={<span>{t('slider.system_manage')} <Icon type="setting" style={{marginLeft: '10px'}}/></span>}
+                            header={<span>{t('slider.system_manage')} <Icon type="setting" style={{marginLeft: '20px', fontSize: '18px'}}/></span>}
                             key="1" 
                             style={ panelStyle }>
-                            <div className="slider-content"
-                                onClick={() => this.changeRouter(1)}>{t('slider.wharf_manage')}</div>
-                            <div className="slider-content">{t('slider.internal_account_manage')}</div>
-                            <div className="slider-content">{t('slider.external_account_manage')}</div>
+                            <SliderContentDom 
+                                sliderList={sliderContentList} 
+                                t={t} />
                         </Panel>
                     </Collapse>
                 </div>
             </div>
             )}
-            
             </I18n>
         )
     }

@@ -8,16 +8,6 @@ body {
   background-color: #f5f5ff;
 }
 
-.ant-collapse .ant-collapse-item .ant-collapse-header {
-  background-color: #3979cb;
-  color: #fff;
-}
-
-.ant-collapse-borderless .ant-collapse-item .ant-collapse-content {
-  background-color: #fff;
-  border-radius: 0;
-}
-
 .custom-container {
   position: relative;
   top: 100px;
@@ -32,4 +22,29 @@ body {
   width: calc(100vw - 210px);
   height: 100%;
   background-color: #fff;
+}
+
+/* collapse 全局样式 */
+.ant-collapse.slider-sa .ant-collapse-item .ant-collapse-header {
+  background-color: #3979cb;
+  color: #fff;
+}
+
+.ant-collapse.slider-approve .ant-collapse-item .ant-collapse-header {
+  background-color: #eee;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.ant-collapse.slider-approve .ant-collapse-item.ant-collapse-item-active .ant-collapse-header {
+  background-color: #3979cb;
+  color: #fff;
+}
+
+.ant-collapse-borderless .ant-collapse-item .ant-collapse-content {
+  background-color: #fff;
+  border-radius: 0;
+}
+
+.ant-collapse-borderless .ant-collapse-item .ant-collapse-content .ant-collapse-content-box {
+  padding: 0;
 }
