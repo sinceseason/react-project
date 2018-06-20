@@ -1,6 +1,6 @@
 import React from 'react';
 import { I18n } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
+import classNames from 'classnames';
 import { Icon, Collapse } from 'antd';
 import '../slider_all.scss';
 
@@ -19,14 +19,14 @@ const sliderContentList = [
 
 function SliderContentDom(props) {
     const sliderList = props.sliderList;
-    const listItems = sliderList.map(item =>
-        <NavLink 
-            to={`/nav/sliderSa/${item}`} 
-            className="slider-content"
-            activeClassName="active">
-                {props.t(`slider.${item}_manage`)}
-        </NavLink>
+    const listItems = sliderList.map((item, id) =>
+        <div key={item} 
+            className={classNames("slider-content", {'active': id === props.index})} 
+            onClick={() => props.changeRouter(item, id)}>
+            {props.t(`slider.${item}_manage`)}
+        </div>
     )
+    
     return (
         <div>
            {listItems}
@@ -39,7 +39,15 @@ export class SliderSa extends React.Component {
         super(props);
         this.state = {
             active: false,
+            index: 0,
         }
+    }
+
+    changeRouter = (val, id) => {
+        this.props.history.push(`/nav/sliderSa/${val}`);
+        this.setState({
+            index: id
+        })
     }
 
     render() {
@@ -48,14 +56,16 @@ export class SliderSa extends React.Component {
             {(t) => (
             <div className="slider-container">
                 <div className="inner-slider">
-                    <Collapse className="slider-sa" accordion bordered={false} defaultActiveKey={['1']}>
+                    <Collapse  className="slider-sa" accordion bordered={false} defaultActiveKey={['1']}>
                         <Panel
                             header={<span>{t('slider.system_manage')} <Icon type="setting" style={{marginLeft: '20px', fontSize: '18px'}}/></span>}
                             key="1" 
                             style={ panelStyle }>
                             <SliderContentDom 
                                 sliderList={sliderContentList} 
-                                t={t} />
+                                t={t} 
+                                index={this.state.index}
+                                changeRouter={this.changeRouter} />
                         </Panel>
                     </Collapse>
                 </div>

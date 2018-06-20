@@ -14,9 +14,9 @@ const panelStyle = {
 };
 
 const sliderContentList = [
-    'wharf_manage', 
-    'internal_manage',
-    'external_manage'
+    'wharf', 
+    'internal',
+    'external'
 ];
 
 function SliderContentDom(props) {
@@ -36,12 +36,16 @@ function SliderContentDom(props) {
     const sliderList = props.sliderList;
     // NOTE: arrow function 的返回值不能加 { } 否则渲染不出来
     const listItems = sliderList.map(item =>
-        <div className={props.activeSlider} key={item}>
+        <div className={classNames("slider-content-container")} key={item}>
             {/* TODO: 组件动态加载事件参数 item, 并使用组件式引用
             PROBLEM: 目前此方法在点击时 item 参数的值无法传入, 待改善 
             <div className="slider-content" onClick={(item) => props.changeRouter(item)}>{props.t(`slider.${item}`)}</div> */}
-            
-            <div className="slider-content" onClick={() => props.changeRouter(item)}>{props.t(`slider.${item}`)}</div>
+            {/* SOLVE: 未给 onClick 事件的() 传参，导致 item 是 null */}
+            <div className={classNames("slider-content")} 
+                onClick={() => props.changeRouter(item)}>
+                {props.t(`slider.${item}_manage`)}
+            </div>
+            {/* PROBLEM: NavLink 适用性较差 */}
             {/*<NavLink to={`/nav/sliderSa/${item}`} className="slider-content" activeClassName="active">{props.t(`slider.${item}manage`)}</NavLink> */}
         </div>
     )
@@ -64,38 +68,39 @@ export class SliderSa extends React.Component {
     }
 
     changeRouter = (val) => {
-        switch (val) {
-            case sliderContentList[0]:
-                this.props.history.push('/nav/sliderSa/wharf');
-                // this.setState({
-                //     active1: true,
-                //     active2: false,
-                //     active3: false,
-                // })
-                break;
-            case sliderContentList[1]:
-                this.props.history.push('/nav/sliderSa/internal');
-                // this.setState({
-                //     active1: false,
-                //     active2: true,
-                //     active3: false,
-                // })
-                break;
-            case sliderContentList[2]:
-                this.props.history.push('/nav/sliderSa/external');
-                // this.setState({
-                //     active1: false,
-                //     active2: false,
-                //     active3: true,
-                // })
-                break;
-        }
+        this.props.history.push(`/nav/sliderSa/${val}`);
+        // switch (val) {
+        //     case sliderContentList[0]:
+        //         this.props.history.push('/nav/sliderSa/wharf');
+        //         this.setState({
+        //             active: true,
+        //             // active2: false,
+        //             // active3: false,
+        //         })
+        //         break;
+        //     case sliderContentList[1]:
+        //         this.props.history.push('/nav/sliderSa/internal');
+        //         // this.setState({
+        //         //     active1: false,
+        //         //     active2: true,
+        //         //     active3: false,
+        //         // })
+        //         break;
+        //     case sliderContentList[2]:
+        //         this.props.history.push('/nav/sliderSa/external');
+        //         // this.setState({
+        //         //     active1: false,
+        //         //     active2: false,
+        //         //     active3: true,
+        //         // })
+        //         break;
+        // }
     }
 
     render() {
-        let activeSlider = classNames('slider-content-container', {
-            'active': this.state.active,
-        });
+        // let activeSlider = classNames('slider-content-container', {
+        //     'active': this.state.active,
+        // });
         // let activeSlider2 = classNames('slider-content-container', {
         //     'active': this.state.active2,
         // });
@@ -108,7 +113,7 @@ export class SliderSa extends React.Component {
             {(t) => (
             <div className="slider-container">
                 <div className="inner-slider">
-                    <Collapse accordion bordered={false} defaultActiveKey={['1']}>
+                    <Collapse  className="slider-sa" accordion bordered={false} defaultActiveKey={['1']}>
                         <Panel
                             header={<span>{t('slider.system_manage')} <Icon type="setting" style={{marginLeft: '20px', fontSize: '18px'}}/></span>}
                             key="1" 
@@ -127,7 +132,7 @@ export class SliderSa extends React.Component {
                             </div> */}
                             <SliderContentDom 
                                 sliderList={sliderContentList} 
-                                activeSlider={activeSlider} 
+                                // activeSlider={activeSlider} 
                                 t={t} 
                                 changeRouter={this.changeRouter} />
                         </Panel>
