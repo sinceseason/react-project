@@ -1,5 +1,6 @@
 import React from 'react';
 import { Input, Icon, Button } from 'antd';
+import { observable } from 'mobx';
 // import { FormattedMessage } from 'react-intl';
 import { I18n } from 'react-i18next';
 import i18next from 'i18next';
@@ -57,20 +58,25 @@ export class Login extends React.Component {
                 let result = data.data;
                 if (result.status === CONSTANT.RESULT.SUCCESS) {
                     let loginUser = result.data;
-                    switch (loginUser.type) {
-                        case 1:
-                            this.props.history.push('/nav/sliderSa');
-                            break;
-                        case 2:
-                            this.props.history.push('/nav/sliderApprove');
-                            break;
-                        case 3:
-                            this.props.history.push('/nav/sliderApply');
-                            break
-                        default:
-                            this.props.history.push('/404');
-                            break;
-                    }
+                    Http._Get(`menu/${loginUser.type}`)
+                        .then(data => {
+                            let menuList = observable(data.data.data);
+                            // @observable menuList = data.data.data;
+                            switch (loginUser.type) {
+                                case 1:
+                                    this.props.history.push('/nav/sliderSa');
+                                    break;
+                                case 2:
+                                    this.props.history.push('/nav/sliderApprove');
+                                    break;
+                                case 3:
+                                    this.props.history.push('/nav/sliderApply');
+                                    break
+                                default:
+                                    this.props.history.push('/404');
+                                    break;
+                            }
+                        })
                 } else {
                     Util.$customErrorNotification(i18next.t('error'), result.msg);
                 }

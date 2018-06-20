@@ -3,7 +3,7 @@ import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
 
 import { Login } from '../containers/login/login';
 import { Header } from '../containers/header/header';
-import { SliderSa } from '../containers/slider/slider-sa/slider';
+import { SliderSa } from '../containers/slider/slider-sa/slider.record';
 import { SliderApprove } from '../containers/slider/slider-approve/slider';
 import { SliderApply } from '../containers/slider/slider-apply/slider';
 import { Wharf } from '../containers/management/wharf/wharf';

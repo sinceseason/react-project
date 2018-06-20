@@ -22,7 +22,7 @@ function SliderContentDom(props) {
     const listItems = sliderList.map(item =>
         <NavLink 
             to={`/nav/sliderSa/${item}`} 
-            className="slider-content" 
+            className="slider-content"
             activeClassName="active">
                 {props.t(`slider.${item}_manage`)}
         </NavLink>

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 // import { classNames } from 'classnames'; NOTE: 这样写报错 classNames is not a function 
 import { Icon, Collapse } from 'antd';
-import './slider.scss';
+import '../slider_all.scss';
 
 const Panel = Collapse.Panel;
 
@@ -38,9 +38,11 @@ function SliderContentDom(props) {
     const listItems = sliderList.map(item =>
         <div className={props.activeSlider} key={item}>
             {/* TODO: 组件动态加载事件参数 item, 并使用组件式引用
-            PROBLEM: 目前此方法在点击时 item 参数的值无法传入, 待改善
+            PROBLEM: 目前此方法在点击时 item 参数的值无法传入, 待改善 
             <div className="slider-content" onClick={(item) => props.changeRouter(item)}>{props.t(`slider.${item}`)}</div> */}
-            <NavLink to={`/nav/sliderSa/${item}`} className="slider-content" activeClassName="active">{props.t(`slider.${item}manage`)}</NavLink>
+            
+            <div className="slider-content" onClick={() => props.changeRouter(item)}>{props.t(`slider.${item}`)}</div>
+            {/*<NavLink to={`/nav/sliderSa/${item}`} className="slider-content" activeClassName="active">{props.t(`slider.${item}manage`)}</NavLink> */}
         </div>
     )
     

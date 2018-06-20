@@ -2,7 +2,7 @@ import React from 'react';
 import { Collapse, Icon } from 'antd';
 import { I18n } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
-import { sliderMenu, SliderMenu } from '../slider_all'
+import { SliderMenu } from '../slider_all';
 import '../slider_all.scss';
 
 const Panel = Collapse.Panel;
@@ -21,10 +21,10 @@ export class SliderApprove extends React.Component {
     }
 
     componentWillMount() {
-        const approveMenu = sliderMenu.get('approve');
-        this.setState({
-            menu: approveMenu,
-        })
+        // const approveMenu = sliderMenu.get('approve');
+        // this.setState({
+        //     menu: approveMenu,
+        // })
     }
 
     render() {
@@ -35,7 +35,6 @@ export class SliderApprove extends React.Component {
                 <div className="inner-slider">
                     {/* <Collapse accordion bordered={false} > */}
                         <SliderMenu 
-                            menus={this.state.menu} 
                             t={t} />
                     {/* </Collapse> */}
                 </div>
