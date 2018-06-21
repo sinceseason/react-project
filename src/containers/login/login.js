@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, Icon, Button } from 'antd';
-import { observable } from 'mobx';
+import { inject, observer } from 'mobx-react';
 // import { FormattedMessage } from 'react-intl';
 import { I18n } from 'react-i18next';
 import i18next from 'i18next';
@@ -8,10 +8,10 @@ import  Util  from '../../util/util';
 import Http from '../../http/http';
 import * as CONSTANT from '../../const/constant';
 import './login.scss';
-import { observer } from 'mobx-react';
 
+@inject('menuStore')
+@observer
 export class Login extends React.Component {
-    @observable menuList = [];
     constructor(props) {
         super(props);
         this.state = {
@@ -62,7 +62,8 @@ export class Login extends React.Component {
                     let loginUser = result.data;
                     Http._Get(`menu/${loginUser.type}`)
                         .then(data => {
-                            this.menuList = data.data.data;
+                            let menuList = data.data.data;
+                            this.props.menuStore.setMenuList(menuList);
                             switch (loginUser.type) {
                                 case 1:
                                     this.props.history.push('/nav/sliderSa');

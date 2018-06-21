@@ -1,29 +1,24 @@
 import React from 'react';
-import { observer } from 'mobx-react';
-import { Collapse, Icon } from 'antd';
+import { observer, inject } from 'mobx-react';
+import { toJS } from 'mobx';
+// import { Collapse } from 'antd';
 import { I18n } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
 import { SliderMenu } from '../slider_all';
 import { Login } from '../../login/login';
 import '../slider_all.scss';
 
-const Panel = Collapse.Panel;
+// const Panel = Collapse.Panel;
 
-const panelStyle = {
-    border: 0,
-    color: '#fff',
-};
+// const panelStyle = {
+//     border: 0,
+//     color: '#fff',
+// };
 
-const login = new Login();
-
+@inject('menuStore')
 @observer
 export class SliderApprove extends React.Component {
     constructor(props) {
-        debugger
         super(props);
-        this.state = {
-            menu: login.menuList,
-        }
     }
 
     componentWillMount() {
@@ -42,7 +37,7 @@ export class SliderApprove extends React.Component {
                     {/* <Collapse accordion bordered={false} > */}
                         <SliderMenu 
                             t={t}
-                            menu={this.state.menu} />
+                            menu={toJS(this.props.menuStore.menuList)} />
                     {/* </Collapse> */}
                 </div>
             </div>

@@ -18,7 +18,8 @@
     "internal_manage": "内部账户管理",
     "external_manage": "外部账户管理",
     "approve_apply": "审批申请",
-    "aggregate_query": "汇总查询",
-    "approve_user_manage": "用户管理"
+    "approve_query": "汇总查询",
+    "approve_user_manage": "用户管理",
+    "approve_external_manage": "外部账户管理"
   }
 }
