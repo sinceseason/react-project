@@ -10,8 +10,8 @@ import * as CONSTANT from '../../const/constant';
 import './login.scss';
 import { observer } from 'mobx-react';
 
-@observer
 export class Login extends React.Component {
+    @observable menuList = [];
     constructor(props) {
         super(props);
         this.state = {
@@ -62,7 +62,7 @@ export class Login extends React.Component {
                     let loginUser = result.data;
                     Http._Get(`menu/${loginUser.type}`)
                         .then(data => {
-                            let menuList = observable(data.data.data);
+                            this.menuList = data.data.data;
                             switch (loginUser.type) {
                                 case 1:
                                     this.props.history.push('/nav/sliderSa');
