@@ -1,10 +1,9 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { toJS } from 'mobx';
-// import { Collapse } from 'antd';
+import { Collapse } from 'antd';
 import { I18n } from 'react-i18next';
 import { SliderMenu } from '../slider_all';
-import { Login } from '../../login/login';
 import '../slider_all.scss';
 
 // const Panel = Collapse.Panel;

@@ -60,6 +60,7 @@ export class Login extends React.Component {
                 let result = data.data;
                 if (result.status === CONSTANT.RESULT.SUCCESS) {
                     let loginUser = result.data;
+                    sessionStorage.loginUser = loginUser;
                     Http._Get(`menu/${loginUser.type}`)
                         .then(data => {
                             let menuList = data.data.data;

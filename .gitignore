@@ -12,6 +12,9 @@
 #vscode
 /.vscode
 
+#webstrom
+/.idea
+
 # production
 /build
 
