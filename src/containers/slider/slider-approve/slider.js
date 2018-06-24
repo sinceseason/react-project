@@ -1,17 +1,10 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { toJS } from 'mobx';
-import { Collapse } from 'antd';
 import { I18n } from 'react-i18next';
 import { SliderMenu } from '../slider_all';
+import history from '../../../router/history';
 import '../slider_all.scss';
-
-// const Panel = Collapse.Panel;
-
-// const panelStyle = {
-//     border: 0,
-//     color: '#fff',
-// };
 
 @inject('menuStore')
 @observer
@@ -21,10 +14,12 @@ export class SliderApprove extends React.Component {
     }
 
     componentWillMount() {
-        // const approveMenu = sliderMenu.get('approve');
-        // this.setState({
-        //     menu: approveMenu,
-        // })
+        history.push(`/nav/sliderApprove/approveApply`);
+    }
+
+    changeRouter(val) {
+        history.push(`/nav/sliderApprove/${val}`);
+        // this.props.history.push(`/nav/sliderApprove/${val}`);
     }
 
     render() {
@@ -33,11 +28,10 @@ export class SliderApprove extends React.Component {
             {(t) => (
             <div className="slider-container">
                 <div className="inner-slider">
-                    {/* <Collapse accordion bordered={false} > */}
-                        <SliderMenu 
-                            t={t}
-                            menu={toJS(this.props.menuStore.menuList)} />
-                    {/* </Collapse> */}
+                    <SliderMenu 
+                        t={t}
+                        menu={toJS(this.props.menuStore.menuList)}
+                        changeRouter={this.changeRouter} />
                 </div>
             </div>
             )}

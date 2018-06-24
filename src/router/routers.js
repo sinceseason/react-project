@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { Route, BrowserRouter, Switch, Redirect, Router } from 'react-router-dom';
+import history from './history';
 
 import { Login } from '../containers/login/login';
 import { Header } from '../containers/header/header';
@@ -41,14 +42,22 @@ const Nav = ({ match }) => (
 );
 
 export const Routes = () => (
-    <BrowserRouter>
+    /* NOTE: SliderApprove 里的子组件调用 changeRouter 时, this.props.history.push方法无法实现跳转
+    * 报错信息为 Cannot read property 'history' of undefined
+    * 因此改为通过自定义 history 的方法跳转
+    * 但使用 BrowserRouter 时，没有 history 属性,因此改为 Router
+    * PROBLEM: 为什么要使用 BrowserRouter
+    */
+    // <BrowserRouter>
+    <Router history={history}>
         <Switch>
             <Route exact path="/login" component={ Login } />
             <Route path="/nav" component={ Nav } />
             <Route path="/404" render={() => <h1>404 Not Found</h1>} />
             <Redirect path="*" to="/login" />
         </Switch>
-    </BrowserRouter>
+    </Router>
+    // </BrowserRouter>
 )
 
 // NOTE: 下面的写法会报错 './router/router' does not contain an export named 'MyRouter'.

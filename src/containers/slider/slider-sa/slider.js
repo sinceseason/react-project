@@ -43,6 +43,10 @@ export class SliderSa extends React.Component {
         }
     }
 
+    componentWillMount() {
+        this.props.history.push(`/nav/sliderSa/wharf`);
+    }
+
     changeRouter = (val, id) => {
         this.props.history.push(`/nav/sliderSa/${val}`);
         this.setState({
@@ -56,7 +60,7 @@ export class SliderSa extends React.Component {
             {(t) => (
             <div className="slider-container">
                 <div className="inner-slider">
-                    <Collapse  className="slider-sa" accordion bordered={false} defaultActiveKey={['1']}>
+                    <Collapse className="slider-sa" accordion bordered={false} defaultActiveKey={['1']}>
                         <Panel
                             header={<span>{t('slider.system_manage')} <Icon type="setting" style={{marginLeft: '20px', fontSize: '18px'}}/></span>}
                             key="1" 

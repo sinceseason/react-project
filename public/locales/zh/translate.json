@@ -10,7 +10,8 @@
     "password": "请输入密码"
   },
   "button": {
-    "login": "登录"
+    "login": "登录",
+    "save": "新增"
   },
   "slider": {
     "system_manage": "系统管理",

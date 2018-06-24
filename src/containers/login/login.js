@@ -9,7 +9,7 @@ import Http from '../../http/http';
 import * as CONSTANT from '../../const/constant';
 import './login.scss';
 
-@inject('menuStore')
+@inject('menuStore', 'userStore')
 @observer
 export class Login extends React.Component {
     constructor(props) {
@@ -60,7 +60,8 @@ export class Login extends React.Component {
                 let result = data.data;
                 if (result.status === CONSTANT.RESULT.SUCCESS) {
                     let loginUser = result.data;
-                    sessionStorage.loginUser = loginUser;
+                    sessionStorage.setItem('loginUser', JSON.stringify(loginUser));
+                    this.props.userStore.setUser(loginUser);
                     Http._Get(`menu/${loginUser.type}`)
                         .then(data => {
                             let menuList = data.data.data;

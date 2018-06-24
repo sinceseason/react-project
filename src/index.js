@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+// mobx 状态管理
 import { Provider } from 'mobx-react';
 import stores from './stores/store';
 
