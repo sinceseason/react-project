@@ -11,7 +11,8 @@
   },
   "button": {
     "login": "登录",
-    "save": "新增"
+    "save": "新增",
+    "add": "添加"
   },
   "slider": {
     "system_manage": "系统管理",

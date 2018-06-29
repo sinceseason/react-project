@@ -57,3 +57,41 @@ body {
 .ant-collapse-borderless .ant-collapse-item .ant-collapse-content .ant-collapse-content-box {
   padding: 0;
 }
+
+/* table 组件全局样式 */
+.ant-table-thead tr th {
+  background-color: #deebff;
+}
+
+/* 设置模态框位置为屏幕正中 */
+.vertical-center-modal {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.vertical-center-modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  width: 0;
+}
+
+.vertical-center-modal .ant-modal {
+  display: inline-block;
+  vertical-align: middle;
+  top: 0;
+  text-align: left;
+}
+
+/* 设置模态框header */
+.ant-modal-header {
+  text-align: center;
+  background-color: #448eec;
+  border-bottom: none;
+}
+
+.ant-modal-footer {
+  border-top: none;
+  text-align: center;
+}
