@@ -4,7 +4,7 @@ import { inject, observer } from 'mobx-react';
 // import { FormattedMessage } from 'react-intl';
 import { I18n } from 'react-i18next';
 import i18next from 'i18next';
-import  Util  from '../../util/util';
+import Util from '../../util/util';
 import Http from '../../http/http';
 import * as CONSTANT from '../../const/constant';
 import './login.scss';
