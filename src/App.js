@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Routes } from './router/routers';
-import 'reflect-metadata';
 import './App.scss';
 
 class App extends Component {
