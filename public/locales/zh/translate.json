@@ -12,7 +12,9 @@
   "button": {
     "login": "登录",
     "save": "新增",
-    "add": "添加"
+    "add": "添加",
+    "confirm": "确认",
+    "cancle": "取消"
   },
   "slider": {
     "system_manage": "系统管理",
@@ -23,5 +25,8 @@
     "approve_query": "汇总查询",
     "approve_user_manage": "用户管理",
     "approve_external_manage": "外部账户管理"
+  },
+  "wharf": {
+    "wharf_name": "码头名称"
   }
 }

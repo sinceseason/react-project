@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from '../const/constant';
+import Util from '../util/util';
 
 const config = {
     baseURL: BASE_URL,
@@ -30,9 +31,10 @@ class Http {
             instance.get(url, {
               params: params
             }).then(data => {
-                Http._ResponseFilter(data) ? resolve(data) : reject(data)
+                resolve(data);
             }).catch(error => {
-              reject(error)
+                Http._ResponseFilter(error);
+                reject(error);
             })
         })
     }
@@ -42,15 +44,15 @@ class Http {
             url += '/' + urlPara
 
         return new Promise((resolve, reject) => {
-            instance.post(url, {
+            instance.post(url, params, {
                 headers: {
                     'Content-Type': undefined
                 },
-                data: params,
             }).then((data) => {
-                resolve(data)
+                resolve(data);
             }).catch((error) => {
-                reject(error)
+                Http._ResponseFilter(error);
+                reject(error);
             })
         })
     }
@@ -60,6 +62,7 @@ class Http {
     }
 
     static _ResponseFilter(data) {
+        data = data.response;
         switch (data.status) {
             case 200:
                 return true;
@@ -68,10 +71,8 @@ class Http {
                 //   router.replace({ name: '404', params: { msg: data.message } })
                 return false;
             case 500:
-            // TODO:
-                // let msg = !IS_DEV ? '系统繁忙' : '系统错误:' + data.message
-                // this._toast(msg, 'error')
-                return false;
+                Util.$BaseErrorNotification(data.data.message);
+                break;
             default:
                 return true;
           }

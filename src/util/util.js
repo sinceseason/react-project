@@ -1,9 +1,9 @@
 import React from 'react';
 import { Icon, notification } from 'antd';
 
-function $BaseErrorNotification() {
+function $BaseErrorNotification(msg) {
     notification.error({
-        message: 'Notification Title',
+        message: msg,
         description: '出错啦',
         icon: <Icon type="frown" style={{ color: '#108ee9' }} />,
         duration: 2,

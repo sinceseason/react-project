@@ -1,13 +1,7 @@
 import React from 'react';
 import { Collapse, Icon, Menu } from 'antd';
 
-const Panel = Collapse.Panel;
 const SubMenu = Menu.SubMenu;
-
-const panelStyle = {
-    border: 0,
-    color: '#fff',
-};
 
 function setChild(parentMenu, menuList, props) {
     let child = parentMenu.subMenu;

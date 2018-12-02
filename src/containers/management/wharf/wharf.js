@@ -1,6 +1,6 @@
 import React from 'react';
 import { I18n } from 'react-i18next';
-import { Row, Col, Button, Table, Modal } from 'antd';
+import { Row, Col, Button, Table, Modal, Input } from 'antd';
 import Http from '../../../http/http';
 import * as CONSTANT from '../../../const/constant';
 
@@ -10,6 +10,7 @@ export class Wharf extends React.Component {
         this.state = {
             wharfList: [],
             visible: false,
+            wharfName: '',
         };
         this.columns = [{
             title: '序号',
@@ -41,21 +42,32 @@ export class Wharf extends React.Component {
 
     showModal = () => {
         this.setState({
-          visible: true,
+            visible: true,
         });
-      }
+    }
+
     handleOk = (e) => {
-        console.log(e);
-        this.setState({
-          visible: false,
+        Http._Post('wharfSave', null,
+            {wharfName: this.state.wharfName}
+        ).then(data => {
+            this.queryWharf();
         });
-      }
-      handleCancel = (e) => {
-        console.log(e);
         this.setState({
-          visible: false,
+            visible: false,
         });
-      }
+    }
+
+    handleCancel = (e) => {
+      this.setState({
+        visible: false,
+      });
+    }
+
+    handleChange = (e) => {
+        this.setState({
+            wharfName: e.target.value,
+        })
+    } 
 
     render() {
         return (
@@ -72,15 +84,22 @@ export class Wharf extends React.Component {
                 <Modal
                   title={t('button.add')}
                   wrapClassName="vertical-center-modal"
-                  maskStyle={{}}
                   bodyStyle={{textAlign: 'center'}}
                   visible={this.state.visible}
                   onOk={this.handleOk}
                   onCancel={this.handleCancel}
+                  okText={t('button.confirm')}
+                  cancelText={t('button.cancle')}
                 >
-                  <p>Some contents...</p>
-                  <p>Some contents...</p>
-                  <p>Some contents...</p>
+                    <Row className="inner" type="flex" justify="center" align="middle">
+                        <Col span={5}>{t('wharf.wharf_name')}</Col>
+                        <Col span={12}>
+                            <Input 
+                                placeholder={t('wharf.wharf_name')} 
+                                value={this.state.wharfName} 
+                                onChange={this.handleChange} />
+                        </Col>
+                    </Row>
                 </Modal>
             </div>
             )}
