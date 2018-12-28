@@ -1,9 +1,8 @@
-import { PrimaryGeneratedColumn, Column, Entity } from "typeorm";
+import { Column, Entity } from "typeorm";
+import { BaseEntity } from '../base/BaseEntity'
 
-@Entity()
-export class Menu {
-    @PrimaryGeneratedColumn()
-    id: number;
+@Entity('menu')
+export class Menu extends BaseEntity {
 
     @Column()
     main: String;
